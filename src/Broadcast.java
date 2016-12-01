@@ -9,10 +9,11 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class WriteAck implements Runnable{
+public class Broadcast implements Runnable{
 	Thread thread = new Thread(this);
+static	String value ="";
 	static	String str = null;
-	public WriteAck(){
+	public Broadcast(){
 		thread.start();
 	}
 	public void run(){
@@ -20,26 +21,36 @@ public class WriteAck implements Runnable{
 			
 		try{
 		//	BufferedReader in = null;
-		//	Thread.sleep(10000);
-		while(true){
-			//if(ListenThread.status.equals("true"))
-			//{
-				//System.out.println("Inside if");
-	//		System.out.println(ListenThread.numbersArray[0]);
-				Socket clientSocket = new Socket(ListenThread.numbersArray[0], 6603);
-		        String ack = "ipReceived";
-				//	
-				PrintWriter out =
-						new PrintWriter(clientSocket.getOutputStream(), true);
-				out.println(ack);
-				
-				out.flush();
-				out.close();
-				clientSocket.close();
-				break;
-			//}
+			Socket clientSocket = new Socket("10.0.0.2", 6111);
+		//	
+		System.out.println(nmapClass.nodesMap.size());
+			String ipAdd, sysName, macAddress, role;
+		for(int i = 0; i <nmapClass.nodesMap.size() ; i++){
+			ipAdd = nmapClass.nodesMap.get(i).ip;
+			sysName = nmapClass.nodesMap.get(i).sysName;
+			macAddress = nmapClass.nodesMap.get(i).macAddress;
+	role= nmapClass.nodesMap.get(i).role;
+	if(i ==0){
+		value = value + ipAdd+" "+sysName+" "+macAddress+" "+role;
+	}
+	else
+	{
+		value = value +" "+ ipAdd+" "+sysName+" "+macAddress+" "+role;
+	}
+	
+	
+	
+			
 		}
-	/*
+		System.out.println(value);
+		PrintWriter out =
+				new PrintWriter(clientSocket.getOutputStream(), true);
+		out.println(value);
+		out.flush();
+		out.close();
+				
+clientSocket.close();
+	/*		
 			ServerSocket listener = new ServerSocket(6112);
 			listener.setReuseAddress(true);
 			while (true) {

@@ -1,3 +1,5 @@
+
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -9,22 +11,20 @@ import java.util.Calendar;
 
 //import iot.ManageDB;
 
-public class ListenThread implements Runnable{
+public class AckReceived implements Runnable{
 static	Boolean status =false;
-public static String [] numbersArray;
 	Thread thread = new Thread(this);
 	static	String str = null;
-	public ListenThread(){
+	public AckReceived(){
 		thread.start();
 	}
 	public void run(){
-	
 			
 		try{
 			BufferedReader in = null;
-			String ack = "received";
-			
-			ServerSocket listener = new ServerSocket(6111);
+			//String ack = "received";
+	
+			ServerSocket listener = new ServerSocket(6603);
 			listener.setReuseAddress(true);
 			while (true) {
 		
@@ -34,24 +34,38 @@ public static String [] numbersArray;
 in = new BufferedReader(
 		new InputStreamReader(socket.getInputStream()));
 str = in.readLine();
-numbersArray = str.split(" ");
-nmapClass.map.put(numbersArray[0], numbersArray[1]);
 if(str.equalsIgnoreCase("null")){
 	//	System.out.println("hello");
 	}
 	else{
 	String ipaddress = str;
-	System.out.println("received ip is:-"+ipaddress);
-	status = true;
+	System.out.println("received ack is:-"+ipaddress);
+	//status = true;
 	socket.close();
-	listener.close();
-	break;
-	
+listener.close();
+break;
+	//Thread.sleep(5000);
+//	Socket clientSocket = new Socket("10.0.0.3", 6112);
+//	//	
+//		//PrintWriter out =
+//		//		new PrintWriter(clientSocket.getOutputStream(), true);
+//	//	out.println(ManageDB.raspberryPiIp);
+//		
+//	PrintWriter out =	new PrintWriter(clientSocket.getOutputStream(), true);
+//	
+//	out.println(ack);
+//	out.flush();
+//
+//	out.close();
+//	clientSocket.close();
+//	
+//		break;
 	}
-
-
+//out.println(ack);
+//				Thread.sleep(1000);
+//				
 				}
-			System.out.println("role is"+nmapClass.map.get(numbersArray[0]));		
+			
 			}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
