@@ -13,6 +13,7 @@ public class Broadcast implements Runnable{
 	Thread thread = new Thread(this);
 static	String value ="";
 	static	String str = null;
+	
 	public Broadcast(){
 		thread.start();
 	}
@@ -21,7 +22,13 @@ static	String value ="";
 			
 		try{
 		//	BufferedReader in = null;
+//for(int j = 0; j< arr.length; j++){
+	//System.out.println("serving:-"+arr[j]);
+			System.out.println("its before");
+		//	Thread.sleep(2000);
 			Socket clientSocket = new Socket("10.0.0.2", 6111);
+			System.out.println("itssssss");
+		//	System.out.println("check connection:"+clientSocket.isConnected());
 		//	
 		System.out.println(nmapClass.nodesMap.size());
 			String ipAdd, sysName, macAddress, role;
@@ -50,58 +57,9 @@ static	String value ="";
 		out.close();
 				
 clientSocket.close();
-	/*		
-			ServerSocket listener = new ServerSocket(6112);
-			listener.setReuseAddress(true);
-			while (true) {
-				//		System.out.println("before accept");
-						Socket socket = listener.accept();
-						in = new BufferedReader(
-								new InputStreamReader(socket.getInputStream()));
-						str = in.readLine();
-						if(str.equalsIgnoreCase("null")){
-							//	System.out.println("hello");
-							}
-						else{
-						System.out.println("\n"+str);
-					//	socket.close();	
-						break;
-						}
-			
-			}
-			
-		*/	
-	/*
-			str=in.readLine();	
-			while(true)
-			{
-				if(str.equalsIgnoreCase("null")){
-				//	System.out.println("hello");
-				}
-				else{
-					break;
-				}
-			}
-			*/
-		/*
-			ServerSocket listener = new ServerSocket(6000);
-			listener.setReuseAddress(true);
-			while (true) {
-				Socket socket = listener.accept();
-
-String ack = "received";
-
-		//		String value = ManageDB.cId +" "+ time +" "+ManageDB.tempModeUp+" "+ManageDB.tempModeMain+" "+ManageDB.tempEnergyUp
-		//				+" "+ManageDB.tempEnergyMain+" "+ManageDB.currentTempUp+" "+ManageDB.currentTempMain+" "+Integer.toString(ManageDB.controlTempMainFloor)
-		//				+" "+Integer.toString(ManageDB.controlTempUpstair);
-				PrintWriter out =
-						new PrintWriter(socket.getOutputStream(), true);
-				out.println(ack);
-				Thread.sleep(1000);
-				out.flush();
-				out.close();
-				}
-			*/
+//Thread.sleep(5000);
+//}	
+		
 			}
 		catch (Exception e) {
 			System.out.println(e.getMessage());

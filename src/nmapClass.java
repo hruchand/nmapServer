@@ -18,6 +18,7 @@ static int ipMax=0;
 	//	nmapClass.getIp();
 fetchIpAndRole();
 assignRole();
+//System.out.println("after assign");
 	//	ListenThread listenThread = new ListenThread();
 
 Broadcast broadcast = new Broadcast();
@@ -28,7 +29,7 @@ Broadcast broadcast = new Broadcast();
 	  System.out.println(e.getMessage());
 	}
 //	WriteAck writeAck = new WriteAck();
-	//AckReceived ackReceived = new AckReceived();
+	AckReceived ackReceived = new AckReceived();
 	}
 public static void fetchIpAndRole(){
 	try{
@@ -105,8 +106,9 @@ public static void assignRole(){
 				break;
 			}
 		}	
+	//	System.out.println("after while");
 	}
-	
+	//System.out.println("after for");
 }
 	
 }
